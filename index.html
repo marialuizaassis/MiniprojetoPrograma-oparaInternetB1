@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <script>
+        const produtos = [];
+
+        function cadastrarProduto() {
+            var nome = prompt("Digite o nome do seu produto:");
+            var preco = prompt("Digite o preço do seu produto:");
+            var detalhes = prompt("Adicione detalhes ao seu produto:");
+
+            const produto = {
+                nome: nome,
+                preco: preco,
+                detalhes: detalhes
+            };
+
+            produtos.push(produto);
+        }
+
+        function atualizarProduto() {
+            var atualizarNome = prompt("Digite o nome do produto que deseja atualizar:");
+            var encontrado = false;
+
+            for (var i = 0; i < produtos.length; i++) {
+                if (produtos[i].nome === atualizarNome) {
+                    var novoNome = prompt("Digite o novo nome para atualizar o produto:");
+                    var novoPreco = prompt("Digite o novo preço para atualizar o produto:");
+                    var novosDetalhes = prompt("Digite os novos detalhes para atualizar o produto:");
+
+                    produtos[i].nome = novoNome;
+                    produtos[i].preco = novoPreco;
+                    produtos[i].detalhes = novosDetalhes;
+
+                    alert("Produto atualizado com sucesso!");
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (!encontrado) {
+                alert("Produto não encontrado.");
+            }
+        }
+
+        function buscarProduto() {
+            var buscarProduto = prompt("Digite o nome do produto que deseja buscar:");
+            var encontrado = false;
+
+            for (var i = 0; i < produtos.length; i++) {
+                if (produtos[i].nome === buscarProduto) {
+                    var mensagemProduto = "Produto encontrado:\n";
+                    mensagemProduto += "Nome: " + produtos[i].nome + "\n";
+                    mensagemProduto += "Preço: " + produtos[i].preco + "Reais"+ "\n";
+                    mensagemProduto += "Detalhes: " + produtos[i].detalhes + "\n";
+                    alert(mensagemProduto);
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (!encontrado) {
+                alert("Produto não encontrado.");
+            }
+        }
+
+        function deletarProduto() {
+            var deletarNome = prompt("Digite o nome do produto que deseja deletar:");
+            var indexDeletar = -1;
+
+            for (var i = 0; i < produtos.length; i++) {
+                if (produtos[i].nome === deletarNome) {
+                    indexDeletar = i;
+                    break;
+                }
+            }
+
+            if (indexDeletar !== -1) {
+                produtos.splice(indexDeletar, 1);
+                alert("Produto deletado com sucesso!");
+            } else {
+                alert("Produto não encontrado.");
+            }
+        }
+
+        while (true) {
+            var pergunta = prompt("Para cadastrar o seu produto digite 1, visualizar digite 2, atualizar digite 3, buscar digite 4, deletar digite 5 e sair de tudo digite 0:");
+
+            if (pergunta === "0") {
+                break;
+            } else if (pergunta === "1") {
+                cadastrarProduto();
+            } else if (pergunta === "2") {
+                var mensagem = "Produtos:\n";
+                for (var i = 0; i < produtos.length; i++) {
+                    mensagem += "Nome: " + produtos[i].nome + "\n";
+                    mensagem += "Preço: " + produtos[i].preco + "\n";
+                    mensagem += "Detalhes: " + produtos[i].detalhes + "\n\n";
+                }
+                alert(mensagem);
+            } else if (pergunta === "3") {
+                atualizarProduto();
+            } else if (pergunta === "4") {
+                buscarProduto();
+            } else if (pergunta === "5") {
+                deletarProduto();
+            } else {
+                alert("Opção inválida.");
+            }
+        }
+    </script>
+
+</body>
+</html>
